@@ -48,5 +48,5 @@ if st.button("Recap လုပ်မယ် (Generate)"):
                 st.error(f"Error ဖြစ်သွားပါတယ်: {e}")
     else:
         st.warning("ကျေးဇူးပြု၍ စာသားအရင်ထည့်ပါ။")
-streamlit
+st
 google-generativeai
