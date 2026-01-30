@@ -27,8 +27,7 @@ if st.button("Recap လုပ်မယ် (Generate)"):
         with st.spinner("AI က စဉ်းစားနေပါတယ်... ခဏစောင့်ပါ..."):
             try:
                 # Model ရွေးချယ်ခြင်း
-                model = genai.GenerativeModel('gemini-pro')
-                
+                model = genai.GenerativeModel('gemini-1.5-flash')
                 # Prompt (AI ကို ခိုင်းစေမည့် ပုံစံ)
                 prompt = f"""
                 You are a professional movie recap narrator. 
