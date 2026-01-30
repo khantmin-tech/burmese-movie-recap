@@ -49,4 +49,3 @@ if st.button("Recap လုပ်မယ် (Generate)"):
     else:
         st.warning("ကျေးဇူးပြု၍ စာသားအရင်ထည့်ပါ။")
 st
-google-generativeai
