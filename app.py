@@ -1,17 +1,16 @@
 import streamlit as st
 import google.generativeai as genai
 
-# Page ခေါင်းစဉ် သတ်မှတ်ခြင်း
+# Page ခေါင်းစဉ်
 st.set_page_config(page_title="Burmese Movie Recap", page_icon="🎬")
 
-# 1. API Key ချိတ်ဆက်ခြင်း (Cloud အတွက် လုံခြုံသောနည်းလမ်း)
-# သတိပြုရန်: ဒီအဆင့်ကြောင့် သင့်ကွန်ပျူတာ (Local) မှာ Error တက်နိုင်ပါတယ်။ 
-# GitHub နဲ့ Cloud ပေါ်ရောက်မှ အလုပ်လုပ်ပါလိမ့်မယ်။
+# 1. API Key ချိတ်ဆက်ခြင်း (Streamlit Secrets မှ ယူမည်)
 try:
     api_key = st.secrets["GEMINI_API_KEY"]
     genai.configure(api_key=api_key)
 except FileNotFoundError:
-    st.error("API Key ရှာမတွေ့ပါ။ Streamlit Cloud ၏ Secrets ထဲတွင် ထည့်ပေးရန် လိုအပ်ပါသည်။")
+    # Local (ကွန်ပျူတာ) မှာ run ရင် ဒီ Error ပြပါလိမ့်မယ်။ Cloud ရောက်မှ အဆင်ပြေပါမယ်။
+    st.error("API Key မတွေ့ပါ။ Streamlit Cloud ၏ Secrets ထဲတွင် ထည့်ပေးရန် လိုအပ်ပါသည်။")
     st.stop()
 
 # 2. App ဒီဇိုင်း
@@ -26,9 +25,10 @@ if st.button("Recap လုပ်မယ် (Generate)"):
     if user_input:
         with st.spinner("AI က စဉ်းစားနေပါတယ်... ခဏစောင့်ပါ..."):
             try:
-                # Model ရွေးချယ်ခြင်း
+                # Model အသစ် (gemini-1.5-flash) ကို သုံးထားသည်
                 model = genai.GenerativeModel('gemini-1.5-flash')
-                # Prompt (AI ကို ခိုင်းစေမည့် ပုံစံ)
+                
+                # AI ကို ခိုင်းစေမည့် စာသား
                 prompt = f"""
                 You are a professional movie recap narrator. 
                 Please summarize the following text into a highly engaging Burmese movie recap script.
